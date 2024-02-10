@@ -1,3 +1,6 @@
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_authentication/services/firebase_auth_methods.dart';
 import 'package:firebase_authentication/widgets/custom_button.dart';
 import 'package:firebase_authentication/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +24,15 @@ class _EmailPasswordSignupState extends State<EmailPasswordSignup> {
     emailController.dispose();
     passwordController.dispose();
   }
+
+  void signUpUser() async {
+    FirebaseAuthMethods(FirebaseAuth.instance).signUpWithEmail(
+        email: emailController.text,
+        password: passwordController.text,
+        context: context,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +60,10 @@ class _EmailPasswordSignupState extends State<EmailPasswordSignup> {
             ),
           ),
           const SizedBox(height: 40),
-          CustomButton(onTap: (){}, text: 'Sign Up')
+          CustomButton(
+            onTap: signUpUser,
+              text: 'Sign Up',
+          )
         ],
       ),
     );
