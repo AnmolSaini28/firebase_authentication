@@ -13,6 +13,8 @@ class FirebaseAuthMethods{
   final FirebaseAuth _auth;
   FirebaseAuthMethods(this._auth);
 
+  User get user => _auth.currentUser!;
+
   //State Persistence
   Stream<User?> get authState => FirebaseAuth.instance.authStateChanges();
 
@@ -157,5 +159,24 @@ class FirebaseAuthMethods{
       showSnackBar(context, e.message!);
     }
   }
+
+  // signOut
+  Future<void> signOut(BuildContext context) async {
+    try{
+      await _auth.signOut();
+    } on FirebaseAuthException catch(e) {
+      showSnackBar(context, e.message!);
+    }
+  }
+
+  // Delete Account
+  Future<void> deleteAccount(BuildContext context) async {
+    try{
+      await _auth.currentUser!.delete();
+    } on FirebaseAuthException catch(e) {
+      showSnackBar(context, e.message!);
+    }
+  }
+
 
 }

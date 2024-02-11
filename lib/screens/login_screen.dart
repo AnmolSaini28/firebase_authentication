@@ -49,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 context.read<FirebaseAuthMethods>().signInAnonymously(context);
               },
               text: 'Anonymous Sign In',
-            )
+            ),
         ],
       )
       ),
