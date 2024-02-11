@@ -13,6 +13,9 @@ class FirebaseAuthMethods{
   final FirebaseAuth _auth;
   FirebaseAuthMethods(this._auth);
 
+  //State Persistence
+  Stream<User?> get authState => FirebaseAuth.instance.authStateChanges();
+
   // Email SignUp
   Future<void> signUpWithEmail({
     required String email,

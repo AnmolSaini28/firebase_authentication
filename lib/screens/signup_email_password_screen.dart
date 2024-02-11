@@ -1,9 +1,9 @@
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_authentication/services/firebase_auth_methods.dart';
 import 'package:firebase_authentication/widgets/custom_button.dart';
 import 'package:firebase_authentication/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EmailPasswordSignup extends StatefulWidget {
   static String routeName = '/signup-email-password';
@@ -26,7 +26,8 @@ class _EmailPasswordSignupState extends State<EmailPasswordSignup> {
   }
 
   void signUpUser() async {
-    FirebaseAuthMethods(FirebaseAuth.instance).signUpWithEmail(
+    context.read<FirebaseAuthMethods>()
+        .signUpWithEmail(
         email: emailController.text,
         password: passwordController.text,
         context: context,
